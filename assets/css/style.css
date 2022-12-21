@@ -1,0 +1,89 @@
+:root {
+  --width-stepper: 0%;
+}
+
+.stepper .step-1, .stepper .step-2, .stepper .step-3 {
+  position: relative;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stepper {
+  width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+.stepper::before {
+  content: "";
+  position: absolute;
+  background-color: #495C83;
+  width: var(--width-stepper);
+  height: 5px;
+  border-radius: 10px;
+  top: 7.5px;
+  left: 5px;
+  transition: all ease 0.5s;
+}
+.stepper::after {
+  content: "";
+  position: absolute;
+  background-color: #C4C4C4;
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+  top: 7.5px;
+  left: 5px;
+  z-index: -10;
+}
+.stepper .step::before {
+  content: "";
+  position: absolute;
+  background-color: #C4C4C4;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.stepper .step-1::after {
+  content: "Informations";
+  position: absolute;
+  color: #C4C4C4;
+  top: 25px;
+  left: -21px;
+}
+.stepper .step-2::after {
+  content: "Questions";
+  position: absolute;
+  color: #C4C4C4;
+  top: 25px;
+  left: -17px;
+}
+.stepper .step-3::after {
+  content: "Result";
+  position: absolute;
+  color: #C4C4C4;
+  top: 25px;
+  left: -13px;
+}
+.stepper > .active::before {
+  transition: all ease 0.5s;
+  background-color: #495C83;
+}
+.stepper > .active::after {
+  transition: all ease 0.5s;
+  color: #495C83;
+}
+
+.app {
+  background-color: #ADA2FF;
+  width: min(100%, 500px);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/*# sourceMappingURL=style.css.map */

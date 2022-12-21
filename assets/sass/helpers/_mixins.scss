@@ -1,0 +1,15 @@
+@mixin flex($position){
+  display: flex;
+  flex-direction: column;
+  align-items: $position;
+}
+
+@mixin after-before($content, $color, $bg-color, $width, $height, $radius){
+  content: $content;
+  position: absolute;
+  color: $color;
+  background-color: $bg-color;
+  width: $width;
+  height: $height;
+  border-radius: $radius;
+}

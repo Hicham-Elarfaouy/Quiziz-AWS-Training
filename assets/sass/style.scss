@@ -1,0 +1,69 @@
+@use "helpers/variables" as *;
+
+@use "helpers/mixins" as *;
+
+@use "helpers/placeholders" as *;
+
+main {
+  //position: relative;
+  @include flex(center);
+}
+
+.stepper {
+  width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+
+  &::before {
+    @include after-before("", null, $main-color, var(--width-stepper), 5px, 10px);
+    top: 7.5px;
+    left: 5px;
+    transition: all ease 0.5s;
+  }
+
+  &::after {
+    @include after-before("", null, #C4C4C4, 100%, 5px, 10px);
+    top: 7.5px;
+    left: 5px;
+    z-index: -10;
+  }
+
+  .step::before {
+    @include after-before("", null, #C4C4C4, 20px, 20px, 50%);
+  }
+
+  @for $i from 1 through 3 {
+    .step-#{$i} {
+      @extend %step-position;
+
+      &::after {
+        content: nth($list-stepper, $i);
+        position: absolute;
+        color: #C4C4C4;
+        top: 25px;
+        left: -25px + $i * 4;
+      }
+    }
+  }
+
+  > .active {
+    &::before {
+      transition: all ease 0.5s;
+      background-color: $main-color;
+    }
+
+    &::after {
+      transition: all ease 0.5s;
+      color: $main-color;
+    }
+  }
+}
+
+.app {
+  background-color: $second-color;
+  width: min(100%, 500px);
+  padding: 20px;
+  border-radius: 5px;
+}
