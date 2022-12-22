@@ -12,10 +12,19 @@
         <span class="step step-2"></span>
         <span class="step step-3"></span>
     </section>
-    <section class="app">
-        <div class="information">
+    <section id="app" class="app">
+        <div class="information none">
             <div>
-                <p>
+                <p id="engagement">
+                    1. You have only 30 seconds per each question.<br>
+                    2. Once you select your answer, you can't reselect.<br>
+                    3. You can't select any option once time goes off.<br>
+                    4. You can't exit from the quiz while you're playing.<br>
+                    5. You'll get points on the basis of your correct answers.<br>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    A asperiores aspernatur at consequatur, dolore doloremque,
+                    eos expedita illum ipsum magnam molestias mollitia nesciunt
+                    numquam quaerat quis saepe sequi tenetur vel.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     A asperiores aspernatur at consequatur, dolore doloremque,
                     eos expedita illum ipsum magnam molestias mollitia nesciunt
@@ -23,11 +32,42 @@
                 </p>
             </div>
             <div>
-                <input type="checkbox">
+                <input id="checkbox1" type="checkbox" class="checkbox pointer">
+                <label for="checkbox1" class="normal pointer">Accept Terms and Conditions</label>
             </div>
-            <div></div>
-            <button onclick="agree()">HI</button>
-            <button onclick="agre()">HIi</button>
+            <div>
+                <button id="btn-start-quiz">Start Quiz</button>
+            </div>
+        </div>
+        <div class="questions">
+            <div class="questions_header">
+                <div class="questions_header_top">
+                    <h5>Question <span>1</span></h5>
+                    <h5>Timer</h5>
+                </div>
+                <div class="questions_header_progress">
+
+                </div>
+            </div>
+            <div class="questions_item">
+                <div class="questions_item_title">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi cumque excepturi fugiat minima nisi omnis quasi ratione tempore voluptatibus? Architecto cumque delectus et fugit itaque laboriosam officiis optio unde!
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus esse ipsa iste modi odio praesentium quidem sapiente voluptas! Error iure minima neque nobis non quam quasi qui quos sint, sit.
+                </div>
+                <div class="questions_item_answers">
+                    <div>
+                        <input id="radio1" type="radio" name="answer">
+                        <label class="checkmark" for="radio1">first answer .............</label>
+                    </div>
+                    <div>
+                        <input id="radio2" type="radio" name="answer">
+                        <label class="checkmark" for="radio2">first answer .............</label>
+                    </div>
+                </div>
+            </div>
+            <div class="questions_footer">
+                <button>Next Question</button>
+            </div>
         </div>
     </section>
 </main>

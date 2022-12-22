@@ -1,0 +1,51 @@
+.stepper {
+  width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 80px;
+
+  &::before {
+    @include after-before("", null, $main-color, var(--width-stepper), 5px, 10px);
+    top: 7.5px;
+    left: 5px;
+    transition: all ease 0.5s;
+  }
+
+  &::after {
+    @include after-before("", null, $quad-color, 100%, 5px, 10px);
+    top: 7.5px;
+    left: 5px;
+    z-index: -10;
+  }
+
+  .step::before {
+    @include after-before("", null, $quad-color, 20px, 20px, 50%);
+  }
+
+  @for $i from 1 through 3 {
+    .step-#{$i} {
+      @extend %step-position;
+
+      &::after {
+        content: nth($list-stepper, $i);
+        position: absolute;
+        color: $quad-color;
+        top: 25px;
+        left: -25px + $i * 4;
+      }
+    }
+  }
+
+  > .active {
+    &::before {
+      transition: all ease 0.5s;
+      background-color: $main-color;
+    }
+
+    &::after {
+      transition: all ease 0.5s;
+      color: $main-color;
+    }
+  }
+}
