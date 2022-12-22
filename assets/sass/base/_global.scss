@@ -1,0 +1,20 @@
+*{
+  font-family: "MV Boli", serif;
+  box-sizing: border-box;
+}
+
+.normal{
+  font-family: "Yu Gothic UI", sans-serif;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.center{
+  @include flex(center);
+}
+
+.none{
+  display: none;
+}

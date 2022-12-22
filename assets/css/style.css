@@ -2,14 +2,8 @@
   --width-stepper: 0%;
 }
 
-.stepper .step-1, .stepper .step-2, .stepper .step-3 {
+.stepper .step-3, .stepper .step-2, .stepper .step-1 {
   position: relative;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .stepper {
@@ -33,7 +27,7 @@ main {
 .stepper::after {
   content: "";
   position: absolute;
-  background-color: #C4C4C4;
+  background-color: #C8B6E2;
   width: 100%;
   height: 5px;
   border-radius: 10px;
@@ -44,7 +38,7 @@ main {
 .stepper .step::before {
   content: "";
   position: absolute;
-  background-color: #C4C4C4;
+  background-color: #C8B6E2;
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -52,21 +46,21 @@ main {
 .stepper .step-1::after {
   content: "Informations";
   position: absolute;
-  color: #C4C4C4;
+  color: #C8B6E2;
   top: 25px;
   left: -21px;
 }
 .stepper .step-2::after {
   content: "Questions";
   position: absolute;
-  color: #C4C4C4;
+  color: #C8B6E2;
   top: 25px;
   left: -17px;
 }
 .stepper .step-3::after {
   content: "Result";
   position: absolute;
-  color: #C4C4C4;
+  color: #C8B6E2;
   top: 25px;
   left: -13px;
 }
@@ -79,11 +73,167 @@ main {
   color: #495C83;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c7c7c7;
+}
+
+* {
+  font-family: "MV Boli", serif;
+  box-sizing: border-box;
+}
+
+.normal {
+  font-family: "Yu Gothic UI", sans-serif;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.none {
+  display: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .app {
   background-color: #ADA2FF;
   width: min(100%, 500px);
-  padding: 20px;
+  padding: 20px 40px;
   border-radius: 5px;
+  box-shadow: 0 0 2px #C8B6E2;
+}
+
+.information > div > p {
+  padding: 10px 20px 10px 0;
+  overflow-y: scroll;
+  height: 200px;
+}
+.information button {
+  cursor: pointer;
+  margin: 20px 0;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  box-shadow: 1px 2px 3px #000;
+  border-radius: 5px;
+}
+.information button:hover {
+  background-color: #e7e5ff;
+  transition: all ease-out 0.3s;
+}
+.information button:active {
+  transform: translateY(5px);
+}
+.information button:disabled {
+  background-color: #cccccc;
+}
+
+.questions_header_top {
+  display: flex;
+  justify-content: space-between;
+}
+.questions_header_top h5 {
+  margin: 0;
+  font-size: 16px;
+}
+.questions_header_progress {
+  position: relative;
+  margin: 20px 0;
+  background-color: #fff;
+  height: 10px;
+  border-radius: 5px;
+}
+.questions_header_progress::after {
+  content: "";
+  position: absolute;
+  background-color: #495C83;
+  width: 50%;
+  height: 10px;
+  border-radius: 5px;
+}
+.questions_item {
+  height: 400px;
+  overflow-y: scroll;
+}
+.questions_item_title {
+  padding-right: 20px;
+}
+.questions_item_answers div {
+  position: relative;
+  margin: 20px 0;
+}
+.questions_item_answers div:hover label::before {
+  background-color: #e1e1e1;
+}
+.questions_item_answers div input {
+  visibility: hidden;
+}
+.questions_item_answers div input:checked ~ label::before {
+  content: "";
+  position: absolute;
+  background-color: #2196F3;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.questions_item_answers div input:checked ~ label::after {
+  content: "";
+  position: absolute;
+  background-color: white;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  top: 5px;
+  left: 5px;
+}
+.questions_item_answers div label::before {
+  content: "";
+  position: absolute;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  left: 0;
+}
+.questions_footer button {
+  font-size: 14px;
+  cursor: pointer;
+  margin: 20px 0;
+  width: 100%;
+  height: 30px;
+  border: 0;
+  box-shadow: 1px 2px 3px #000;
+  border-radius: 5px;
+}
+.questions_footer button:hover {
+  background-color: #e7e5ff;
+  transition: all ease-out 0.3s;
+}
+.questions_footer button:active {
+  transform: translateY(5px);
+}
+.questions_footer button:disabled {
+  background-color: #cccccc;
 }
 
 /*# sourceMappingURL=style.css.map */

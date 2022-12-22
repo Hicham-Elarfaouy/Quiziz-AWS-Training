@@ -1,69 +1,110 @@
-@use "helpers/variables" as *;
+@import "abstracts/variables";
 
-@use "helpers/mixins" as *;
+@import "abstracts/mixins";
 
-@use "helpers/placeholders" as *;
+@import "abstracts/placeholders";
+
+@import "components/stepper";
+
+@import "components/scroll";
+
+@import "base/global";
 
 main {
   //position: relative;
   @include flex(center);
 }
 
-.stepper {
-  width: 300px;
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 80px;
+.app {
+  background-color: $second-color;
+  width: min(100%, 500px);
+  padding: 20px 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px $quad-color;
+}
 
-  &::before {
-    @include after-before("", null, $main-color, var(--width-stepper), 5px, 10px);
-    top: 7.5px;
-    left: 5px;
-    transition: all ease 0.5s;
+.information {
+  & > div > p {
+    padding: 10px 20px 10px 0;
+    overflow-y: scroll;
+    height: 200px;
   }
 
-  &::after {
-    @include after-before("", null, #C4C4C4, 100%, 5px, 10px);
-    top: 7.5px;
-    left: 5px;
-    z-index: -10;
+  button {
+    @include button(100%, 30px, 20px 0);
   }
+}
 
-  .step::before {
-    @include after-before("", null, #C4C4C4, 20px, 20px, 50%);
-  }
+.questions {
+  &_header {
+    &_top {
+      display: flex;
+      justify-content: space-between;
 
-  @for $i from 1 through 3 {
-    .step-#{$i} {
-      @extend %step-position;
+      h5 {
+        margin: 0;
+        font-size: 16px;
+      }
+    }
+
+    &_progress {
+      position: relative;
+      margin: 20px 0;
+      background-color: #fff;
+      height: 10px;
+      border-radius: 5px;
 
       &::after {
-        content: nth($list-stepper, $i);
-        position: absolute;
-        color: #C4C4C4;
-        top: 25px;
-        left: -25px + $i * 4;
+        @include after-before("", null, $main-color, 50%, 10px, 5px);
       }
     }
   }
 
-  > .active {
-    &::before {
-      transition: all ease 0.5s;
-      background-color: $main-color;
+  &_item {
+    height: 400px;
+    overflow-y: scroll;
+    &_title{
+      padding-right: 20px;
     }
+    &_answers {
+      div {
+        position: relative;
+        margin: 20px 0;
 
-    &::after {
-      transition: all ease 0.5s;
-      color: $main-color;
+        &:hover {
+          label::before {
+            background-color: #e1e1e1;
+          }
+        }
+
+        input {
+          visibility: hidden;
+
+          &:checked {
+            & ~ label::before {
+              @include after-before("", null, #2196F3, 20px, 20px, 50%);
+            }
+
+            ~ label::after {
+              @include after-before("", null, white, 10px, 10px, 50%);
+              top: 5px;
+              left: 5px;
+            }
+          }
+        }
+
+        label::before {
+          @include after-before("", null, white, 20px, 20px, 50%);
+          left: 0;
+        }
+      }
     }
   }
-}
 
-.app {
-  background-color: $second-color;
-  width: min(100%, 500px);
-  padding: 20px;
-  border-radius: 5px;
+  &_footer {
+    button {
+      font-size: 14px;
+      @include button(100%, 30px, 20px 0);
+    }
+  }
 }
