@@ -1,7 +1,9 @@
 // global variables
 let index = 0;
-let question_length = 0;
+let questions_length = 0;
 let questions_id = [];
+let QUESTION;
+let user_answers = [];
 
 // selectors
 const r = document.querySelector(':root');
@@ -29,7 +31,13 @@ BTN_QUIZ.onclick = () => {
     APP.querySelector('.questions').classList.remove('none');
 }
 
-BTN_FINISH.onclick = () =>{
+BTN_NEXT.onclick = () => {
+    check_answers();
+    next_question();
+}
+
+BTN_FINISH.onclick = () => {
+    check_answers();
     r.style.setProperty('--width-stepper', '100%');
     document.querySelector('.step-3').classList.add('active');
     APP.querySelector('.questions').classList.add('none');
@@ -37,30 +45,30 @@ BTN_FINISH.onclick = () =>{
 }
 
 // get length and id of questions
-get_question().then((data)=>{
-    data.forEach((e)=>{
+get_question().then((data) => {
+    data.forEach((e) => {
         questions_id.push(e.id);
     });
     questions_id = questions_id.sort(function () {
         return Math.random() - 0.5;
     });
-    question_length = data.length;
+    questions_length = data.length;
 });
 
 // function for get specific question from json file
-async function get_question(id = ''){
-    return await fetch(`http://localhost:3000/questions/${id}`).then((response)=>{
+async function get_question(id = '') {
+    return await fetch(`http://localhost:3000/questions/${id}`).then((response) => {
         return response.json();
     });
 }
 
-function update_progress(){
-    let val = ((index+1) / question_length) * 100;
+function update_progress() {
+    let val = ((index + 1) / questions_length) * 100;
     r.style.setProperty('--width-progress', `${val}%`);
 }
 
-function create_option(O){
-    let id = `radio${O['id']}`;
+function create_option(O) {
+    let id = `option${O['id']}`;
     let option = document.createElement('div');
     let input = document.createElement('input');
     input.id = id;
@@ -72,20 +80,46 @@ function create_option(O){
     option.append(input, label);
     return option;
 }
-function next_question(){
+
+function next_question() {
     update_progress();
     QUESTION_NUMBER.textContent = (index + 1).toString();
-    get_question(questions_id[index]).then((Q)=>{
+    get_question(questions_id[index]).then((Q) => {
+        QUESTION = Q;
         QUESTION_TITLE.textContent = Q['question'];
         QUESTION_ANSWERS.innerHTML = '';
-        for (let i = 0; i < Q['options'].length; i++){
+        for (let i = 0; i < Q['options'].length; i++) {
             QUESTION_ANSWERS.appendChild(create_option(Q['options'][i]));
         }
     });
     index++;
-    if(index >= question_length){
+    if (index >= questions_length) {
         BTN_NEXT.classList.add('none');
         BTN_FINISH.classList.remove('none');
         index = 0;
     }
+}
+
+function check_answers() {
+    let answers_checked = [];
+    let answers_right = [];
+
+    for (let i = 0; i < QUESTION['answers'].length; i++) {
+        answers_right.push(QUESTION['answers'][i]['id']);
+    }
+    for (let i = 1; i <= 4; i++) {
+        if (document.querySelector(`#option${i}`).checked) {
+            answers_checked.push(i);
+        }
+    }
+    let user_answer = {
+        "id": QUESTION['id'],
+        "status": false,
+        "user_checked": answers_checked
+    }
+    if (answers_right.toString() === answers_checked.toString()) {
+        user_answer.status = true;
+    }
+    user_answers.push(user_answer);
+    console.log(user_answers);
 }

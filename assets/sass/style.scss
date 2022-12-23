@@ -64,9 +64,11 @@ main {
   &_item {
     height: 400px;
     overflow-y: scroll;
-    &_title{
+
+    &_title {
       padding-right: 20px;
     }
+
     &_answers {
       div {
         position: relative;
