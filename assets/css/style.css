@@ -1,5 +1,6 @@
 :root {
   --width-stepper: 0%;
+  --width-progress: 0%;
 }
 
 .stepper .step-3, .stepper .step-2, .stepper .step-1 {
@@ -167,9 +168,10 @@ main {
   content: "";
   position: absolute;
   background-color: #495C83;
-  width: 50%;
+  width: var(--width-progress);
   height: 10px;
   border-radius: 5px;
+  transition: all ease 0.5s;
 }
 .questions_item {
   height: 400px;
