@@ -13,7 +13,7 @@
         <span class="step step-3"></span>
     </section>
     <section id="app" class="app">
-        <div class="information none">
+        <div class="information">
             <div>
                 <p id="engagement">
                     1. You have only 30 seconds per each question.<br>
@@ -39,10 +39,10 @@
                 <button id="btn-start-quiz">Start Quiz</button>
             </div>
         </div>
-        <div class="questions">
+        <div class="questions none">
             <div class="questions_header">
                 <div class="questions_header_top">
-                    <h5>Question <span>1</span></h5>
+                    <h5>Question <span id="question_number">1</span></h5>
                     <h5>Timer</h5>
                 </div>
                 <div class="questions_header_progress">
@@ -51,22 +51,13 @@
             </div>
             <div class="questions_item">
                 <div class="questions_item_title">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi cumque excepturi fugiat minima nisi omnis quasi ratione tempore voluptatibus? Architecto cumque delectus et fugit itaque laboriosam officiis optio unde!
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus esse ipsa iste modi odio praesentium quidem sapiente voluptas! Error iure minima neque nobis non quam quasi qui quos sint, sit.
                 </div>
                 <div class="questions_item_answers">
-                    <div>
-                        <input id="radio1" type="radio" name="answer">
-                        <label class="checkmark" for="radio1">first answer .............</label>
-                    </div>
-                    <div>
-                        <input id="radio2" type="radio" name="answer">
-                        <label class="checkmark" for="radio2">first answer .............</label>
-                    </div>
                 </div>
             </div>
             <div class="questions_footer">
-                <button>Next Question</button>
+                <button id="btn-next-question" onclick="next_question()">Next Question</button>
+                <button id="btn-finish" class="none">Finish</button>
             </div>
         </div>
     </section>

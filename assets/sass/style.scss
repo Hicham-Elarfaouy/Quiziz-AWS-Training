@@ -55,7 +55,8 @@ main {
       border-radius: 5px;
 
       &::after {
-        @include after-before("", null, $main-color, 50%, 10px, 5px);
+        @include after-before("", null, $main-color, var(--width-progress), 10px, 5px);
+        transition: all ease 0.5s;
       }
     }
   }
