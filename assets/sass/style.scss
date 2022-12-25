@@ -111,3 +111,40 @@ main {
     }
   }
 }
+
+.result {
+  &_header {
+    button {
+      @include button(100%, 30px, 20px 0);
+    }
+
+    & > div:first-child {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+      color: white;
+
+      & .result_header_correct {
+        @extend %result-div;
+        background-color: #4b6030;
+        width: 40%;
+      }
+
+      & .result_header_incorrect {
+        @extend %result-div;
+        background-color: #561a1a;
+        width: 40%;
+      }
+    }
+  }
+  &_review{
+    h3{
+      margin: 10px 0;
+    }
+    &_question{
+      @extend %result-div;
+      background-color: white;
+      border-left: 10px solid #4b6030;
+    }
+  }
+}
