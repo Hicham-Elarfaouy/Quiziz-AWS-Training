@@ -13,7 +13,7 @@
         <span class="step step-3"></span>
     </section>
     <section id="app" class="app">
-        <div class="information none">
+        <div class="information">
             <div>
                 <p id="engagement">
                     1. You have only 30 seconds per each question.<br>
@@ -60,7 +60,7 @@
                 <button id="btn-finish" class="none">Finish</button>
             </div>
         </div>
-        <div class="result">
+        <div class="result none">
             <div class="result_header">
                 <div>
                     <div class="result_header_correct">
@@ -73,31 +73,13 @@
                     </div>
                 </div>
                 <div>
-                    <button>Play Again</button>
+                    <button id="btn-play-again">Play Again</button>
                 </div>
             </div>
             <div class="result_review">
                 <h3>Review Questions</h3>
-                <div class="result_review_question">
-                    <div class="result_review_question_title">
-                        Which component of the AWS global infrastructure does Amazon
-                        CloudFront use to ensure low-latency delivery?
-                    </div>
-                    <div class="result_review_question_options">
-                        <div>AWS Regions</div>
-                        <div>Edge locations</div>
-                        <div>Availability Zones</div>
-                        <div>Virtual Private Cloud (VPC)</div>
-                    </div>
+                <div id="review_questions">
                 </div>
-                <!--                <div class="result_review_question">-->
-                <!--                    <div class="result_review_question_title">-->
-
-                <!--                    </div>-->
-                <!--                    <div class="result_review_question_option">-->
-
-                <!--                    </div>-->
-                <!--                </div>-->
             </div>
         </div>
     </section>

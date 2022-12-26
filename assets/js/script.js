@@ -11,10 +11,14 @@ const APP = document.querySelector('#app');
 const BTN_QUIZ = document.querySelector('#btn-start-quiz');
 const BTN_NEXT = document.querySelector('#btn-next-question');
 const BTN_FINISH = document.querySelector('#btn-finish');
+const BTN_AGAIN = document.querySelector('#btn-play-again');
 const CHECKBOX_ACCEPT = document.querySelector('#checkbox1');
 const QUESTION_TITLE = document.querySelector('.questions_item_title');
 const QUESTION_ANSWERS = document.querySelector('.questions_item_answers');
 const QUESTION_NUMBER = document.querySelector('#question_number');
+const RESULT_CORRECT = document.querySelector('#correct');
+const RESULT_INCORRECT = document.querySelector('#incorrect');
+const REVIEW_QUESTIONS = document.querySelector('#review_questions');
 
 // check if accept our conditions before start
 BTN_QUIZ.disabled = true;
@@ -41,7 +45,12 @@ BTN_FINISH.onclick = () => {
     r.style.setProperty('--width-stepper', '100%');
     document.querySelector('.step-3').classList.add('active');
     APP.querySelector('.questions').classList.add('none');
-    // APP.querySelector('.questions').classList.remove('none');
+    APP.querySelector('.result').classList.remove('none');
+    update_result();
+}
+
+BTN_AGAIN.onclick = () => {
+    location.reload();
 }
 
 // get length and id of questions
@@ -72,7 +81,13 @@ function create_option(O) {
     let option = document.createElement('div');
     let input = document.createElement('input');
     input.id = id;
-    input.setAttribute('type', 'radio');
+
+    if (QUESTION['answers'].length > 1) {
+        input.setAttribute('type', 'checkbox');
+    } else {
+        input.setAttribute('type', 'radio');
+    }
+
     input.setAttribute('name', 'answer');
     let label = document.createElement('label');
     label.setAttribute('for', `${id}`);
@@ -105,7 +120,7 @@ function check_answers() {
     let answers_right = [];
 
     for (let i = 0; i < QUESTION['answers'].length; i++) {
-        answers_right.push(QUESTION['answers'][i]['id']);
+        answers_right.push(QUESTION['answers'][i]);
     }
     for (let i = 1; i <= 4; i++) {
         if (document.querySelector(`#option${i}`).checked) {
@@ -121,5 +136,67 @@ function check_answers() {
         user_answer.status = true;
     }
     user_answers.push(user_answer);
-    console.log(user_answers);
+}
+
+function create_options_review_question(options, right, checked) {
+    let section = document.createElement('section');
+    for (let i = 0; i < options.length; i++) {
+        let div = document.createElement('div');
+        div.append(options[i]['option']);
+        if (checked.includes(options[i]['id'])) {
+            div.classList.add('user_answer');
+            if (!right.includes(options[i]['id'])) {
+                div.classList.add('wrong_answer');
+            }
+        }
+        if (right.includes(options[i]['id'])) {
+            div.classList.add('right_answer');
+        }
+        section.append(div);
+    }
+    return section;
+}
+
+function create_review_question(item) {
+    let question_div = document.createElement('div');
+    question_div.classList.add('result_review_question');
+
+    let title_div = document.createElement('div');
+    title_div.classList.add('result_review_question_title');
+
+    let options_div = document.createElement('div');
+    options_div.classList.add('result_review_question_options');
+
+    get_question(item['id']).then((Q) => {
+        title_div.append(Q['question']);
+
+        options_div.append(create_options_review_question(Q['options'], Q['answers'], item['user_checked']));
+
+        if (item['status'] === true) {
+            question_div.classList.add('correct_question');
+        } else {
+            question_div.classList.add('incorrect_question');
+            let explanation = document.createElement('p');
+            let title_ex = document.createElement('b');
+            title_ex.append('Explanation : ');
+            explanation.append(title_ex, Q['explanation']);
+            options_div.append(explanation);
+        }
+    });
+
+    question_div.append(title_div, options_div);
+
+    return question_div;
+}
+
+function update_result() {
+    let user = user_answers.sort((a, b) => {
+        return (a["status"] < b['status']) ? -1 : 1;
+    });
+    RESULT_CORRECT.textContent = user.filter(q => q['status'] === true).length.toString();
+    RESULT_INCORRECT.textContent = user.filter(q => q['status'] === false).length.toString();
+    REVIEW_QUESTIONS.innerHTML = '';
+    for (let i = 0; i < user.length; i++) {
+        REVIEW_QUESTIONS.append(create_review_question(user[i]));
+    }
 }

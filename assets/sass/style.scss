@@ -80,7 +80,7 @@ main {
           }
         }
 
-        input {
+        input[type="radio"] {
           visibility: hidden;
 
           &:checked {
@@ -94,11 +94,33 @@ main {
               left: 5px;
             }
           }
+
+          & ~ label::before {
+            @include after-before("", null, white, 20px, 20px, 50%);
+            left: 0;
+          }
         }
 
-        label::before {
-          @include after-before("", null, white, 20px, 20px, 50%);
-          left: 0;
+        input[type="checkbox"] {
+          visibility: hidden;
+
+          &:checked {
+            & ~ label::before {
+              @include after-before("", null, #2196F3, 18px, 18px, 3px);
+            }
+
+            ~ label::after {
+              @include after-before("\2713", null, null, null, null, null);
+              color: white;
+              top: -3px;
+              left: 3.5px;
+            }
+          }
+
+          & ~ label::before {
+            @include after-before("", null, white, 18px, 18px, 3px);
+            left: 0;
+          }
         }
       }
     }
@@ -126,25 +148,45 @@ main {
 
       & .result_header_correct {
         @extend %result-div;
-        background-color: #4b6030;
+        background-color: $correct-color;
         width: 40%;
       }
 
       & .result_header_incorrect {
         @extend %result-div;
-        background-color: #561a1a;
+        background-color: $incorrect-color;
         width: 40%;
       }
     }
   }
-  &_review{
-    h3{
+
+  &_review {
+    h3 {
       margin: 10px 0;
     }
-    &_question{
+
+    &_question {
       @extend %result-div;
       background-color: white;
-      border-left: 10px solid #4b6030;
+      margin-bottom: 20px;
+
+      &_options {
+        margin-left: 20px;
+
+        p {
+          border-radius: 5px;
+          padding: 5px 10px;
+          background-color: $quad-color;
+        }
+
+        div {
+          position: relative;
+          border: .5px solid #C4C4C4;
+          border-radius: 5px;
+          margin-top: 10px;
+          padding: 2px 5px;
+        }
+      }
     }
   }
 }

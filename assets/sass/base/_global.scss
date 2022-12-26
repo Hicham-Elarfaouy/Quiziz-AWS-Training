@@ -18,3 +18,27 @@
 .none {
   display: none;
 }
+
+.correct_question {
+  border-left: 10px solid $correct-color;
+}
+
+.incorrect_question {
+  border-left: 10px solid $incorrect-color;
+}
+
+.right_answer{
+  border: 2px solid #32d009 !important;
+}
+
+.wrong_answer{
+  border: 2px solid #e10e0e !important;
+}
+
+.user_answer::before{
+  content: 'User';
+  position: absolute;
+  top: 5px;
+  left: -28px;
+  font-size: 10px;
+}

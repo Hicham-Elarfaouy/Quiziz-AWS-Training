@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --width-stepper: 0%;
   --width-progress: 0%;
@@ -10,6 +11,7 @@
 .result_review_question, .result_header > div:first-child .result_header_incorrect, .result_header > div:first-child .result_header_correct {
   border-radius: 10px;
   padding: 10px;
+  box-shadow: 1px 2px 3px #4d4d4d;
 }
 
 .stepper {
@@ -115,6 +117,30 @@
   display: none;
 }
 
+.correct_question {
+  border-left: 10px solid #4b6030;
+}
+
+.incorrect_question {
+  border-left: 10px solid #561a1a;
+}
+
+.right_answer {
+  border: 2px solid #32d009 !important;
+}
+
+.wrong_answer {
+  border: 2px solid #e10e0e !important;
+}
+
+.user_answer::before {
+  content: "User";
+  position: absolute;
+  top: 5px;
+  left: -28px;
+  font-size: 10px;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -192,10 +218,10 @@ main {
 .questions_item_answers div:hover label::before {
   background-color: #e1e1e1;
 }
-.questions_item_answers div input {
+.questions_item_answers div input[type=radio] {
   visibility: hidden;
 }
-.questions_item_answers div input:checked ~ label::before {
+.questions_item_answers div input[type=radio]:checked ~ label::before {
   content: "";
   position: absolute;
   background-color: #2196F3;
@@ -203,7 +229,7 @@ main {
   height: 20px;
   border-radius: 50%;
 }
-.questions_item_answers div input:checked ~ label::after {
+.questions_item_answers div input[type=radio]:checked ~ label::after {
   content: "";
   position: absolute;
   background-color: white;
@@ -213,13 +239,40 @@ main {
   top: 5px;
   left: 5px;
 }
-.questions_item_answers div label::before {
+.questions_item_answers div input[type=radio] ~ label::before {
   content: "";
   position: absolute;
   background-color: white;
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  left: 0;
+}
+.questions_item_answers div input[type=checkbox] {
+  visibility: hidden;
+}
+.questions_item_answers div input[type=checkbox]:checked ~ label::before {
+  content: "";
+  position: absolute;
+  background-color: #2196F3;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+.questions_item_answers div input[type=checkbox]:checked ~ label::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  top: -3px;
+  left: 3.5px;
+}
+.questions_item_answers div input[type=checkbox] ~ label::before {
+  content: "";
+  position: absolute;
+  background-color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
   left: 0;
 }
 .questions_footer button {
@@ -281,7 +334,22 @@ main {
 }
 .result_review_question {
   background-color: white;
-  border-left: 10px solid #4b6030;
+  margin-bottom: 20px;
+}
+.result_review_question_options {
+  margin-left: 20px;
+}
+.result_review_question_options p {
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #C8B6E2;
+}
+.result_review_question_options div {
+  position: relative;
+  border: 0.5px solid #C4C4C4;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 2px 5px;
 }
 
 /*# sourceMappingURL=style.css.map */
