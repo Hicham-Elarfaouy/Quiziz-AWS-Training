@@ -43,7 +43,13 @@
             <div class="questions_header">
                 <div class="questions_header_top">
                     <h5>Question <span id="question_number">1</span></h5>
-                    <h5>Timer</h5>
+                    <h5>
+                        <svg>
+                            <circle r="22" cx="25" cy="25"></circle>
+                            <circle id="circle_timer" r="22" cx="25" cy="25"></circle>
+                        </svg>
+                        <span id="timer">30</span>
+                    </h5>
                 </div>
                 <div class="questions_header_progress">
 
@@ -56,8 +62,30 @@
                 </div>
             </div>
             <div class="questions_footer">
-                <button id="btn-next-question" onclick="next_question()">Next Question</button>
+                <button id="btn-next-question">Next Question</button>
                 <button id="btn-finish" class="none">Finish</button>
+            </div>
+        </div>
+        <div class="result none">
+            <div class="result_header">
+                <div>
+                    <div class="result_header_correct">
+                        <div id="correct">10</div>
+                        correct
+                    </div>
+                    <div class="result_header_incorrect">
+                        <div id="incorrect">10</div>
+                        incorrect
+                    </div>
+                </div>
+                <div>
+                    <button id="btn-play-again">Play Again</button>
+                </div>
+            </div>
+            <div class="result_review">
+                <h3>Review Questions</h3>
+                <div id="review_questions">
+                </div>
             </div>
         </div>
     </section>

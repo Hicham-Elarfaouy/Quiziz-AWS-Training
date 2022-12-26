@@ -1,10 +1,10 @@
-@mixin flex($position){
+@mixin flex($position) {
   display: flex;
   flex-direction: column;
   align-items: $position;
 }
 
-@mixin after-before($content, $color, $bg-color, $width, $height, $radius){
+@mixin after-before($content, $color, $bg-color, $width, $height, $radius) {
   content: $content;
   position: absolute;
   color: $color;
@@ -14,7 +14,7 @@
   border-radius: $radius;
 }
 
-@mixin button($width, $height, $margin){
+@mixin button($width, $height, $margin) {
   cursor: pointer;
   margin: $margin;
   width: $width;
@@ -22,14 +22,14 @@
   border: 0;
   box-shadow: 1px 2px 3px #000;
   border-radius: 5px;
-  &:hover{
+  &:hover {
     background-color: #e7e5ff;
     transition: all ease-out 0.3s;
   }
-  &:active{
+  &:active {
     transform: translateY(5px);
   }
-  &:disabled{
+  &:disabled {
     background-color: #cccccc;
   }
 }
