@@ -40,10 +40,37 @@ main {
     &_top {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       h5 {
         margin: 0;
         font-size: 16px;
+        position: relative;
+      }
+
+      #timer{
+        position: absolute;
+        right: 15px;
+        top: 12px;
+      }
+
+      svg {
+        height: 50px;
+        width: 50px;
+        transform: rotate(270deg);
+        #circle_timer{
+          stroke: var(--timer-color);
+          stroke-dashoffset: var(--timer-progress);
+        }
+        circle {
+          fill: transparent;
+          stroke-width: 5px;
+          stroke-linecap: round;
+          stroke-dasharray: 444;
+          transition: all ease .5s;
+          stroke: #dad5d5;
+          stroke-dashoffset: 0;
+        }
       }
     }
 

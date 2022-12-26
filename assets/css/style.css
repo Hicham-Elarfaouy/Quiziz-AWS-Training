@@ -2,6 +2,8 @@
 :root {
   --width-stepper: 0%;
   --width-progress: 0%;
+  --timer-progress: 444;
+  --timer-color: #228c5e;
 }
 
 .stepper .step-3, .stepper .step-2, .stepper .step-1 {
@@ -183,10 +185,35 @@ main {
 .questions_header_top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .questions_header_top h5 {
   margin: 0;
   font-size: 16px;
+  position: relative;
+}
+.questions_header_top #timer {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}
+.questions_header_top svg {
+  height: 50px;
+  width: 50px;
+  transform: rotate(270deg);
+}
+.questions_header_top svg #circle_timer {
+  stroke: var(--timer-color);
+  stroke-dashoffset: var(--timer-progress);
+}
+.questions_header_top svg circle {
+  fill: transparent;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  stroke-dasharray: 444;
+  transition: all ease 0.5s;
+  stroke: #dad5d5;
+  stroke-dashoffset: 0;
 }
 .questions_header_progress {
   position: relative;

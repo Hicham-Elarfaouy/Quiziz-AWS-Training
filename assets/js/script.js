@@ -4,6 +4,8 @@ let questions_length = 0;
 let questions_id = [];
 let QUESTION;
 let user_answers = [];
+let seconds = 30;
+let interval;
 
 // selectors
 const r = document.querySelector(':root');
@@ -19,6 +21,7 @@ const QUESTION_NUMBER = document.querySelector('#question_number');
 const RESULT_CORRECT = document.querySelector('#correct');
 const RESULT_INCORRECT = document.querySelector('#incorrect');
 const REVIEW_QUESTIONS = document.querySelector('#review_questions');
+const TIMER_TEXT = document.querySelector('#timer');
 
 // check if accept our conditions before start
 BTN_QUIZ.disabled = true;
@@ -41,6 +44,8 @@ BTN_NEXT.onclick = () => {
 }
 
 BTN_FINISH.onclick = () => {
+    index = 0;
+    clearInterval(interval);
     check_answers();
     r.style.setProperty('--width-stepper', '100%');
     document.querySelector('.step-3').classList.add('active');
@@ -97,6 +102,8 @@ function create_option(O) {
 }
 
 function next_question() {
+    clearInterval(interval);
+    timer();
     update_progress();
     QUESTION_NUMBER.textContent = (index + 1).toString();
     get_question(questions_id[index]).then((Q) => {
@@ -111,7 +118,6 @@ function next_question() {
     if (index >= questions_length) {
         BTN_NEXT.classList.add('none');
         BTN_FINISH.classList.remove('none');
-        index = 0;
     }
 }
 
@@ -199,4 +205,29 @@ function update_result() {
     for (let i = 0; i < user.length; i++) {
         REVIEW_QUESTIONS.append(create_review_question(user[i]));
     }
+}
+
+function timer() {
+    r.style.setProperty('--timer-color', '#228c5e');
+    seconds = 30;
+    let circle = 444;
+    interval = setInterval(() => {
+        circle -= 4.4;
+        TIMER_TEXT.textContent = ('0' + seconds).slice(-2).toString();
+        r.style.setProperty('--timer-progress', circle.toString());
+        if (seconds === 10) {
+            r.style.setProperty('--timer-color', 'orange');
+        }
+        if (seconds === 5) {
+            r.style.setProperty('--timer-color', 'red');
+        }
+        seconds--;
+        if (seconds < 0) {
+            if (index >= questions_length) {
+                BTN_FINISH.click();
+            } else {
+                BTN_NEXT.click();
+            }
+        }
+    }, 1000);
 }
