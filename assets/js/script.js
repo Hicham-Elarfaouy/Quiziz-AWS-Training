@@ -1,3 +1,17 @@
+// jibSoal();
+// function jibSoal(){
+//     let fetch = document.querySelector('#fetch');
+//
+//     $.ajax({
+//         method: "POST",
+//         url: "php/api.php",
+//         data: { id_question: '0'},
+//         success: function (obj) {
+//             console.log(obj);
+//         }
+//     });
+// }
+
 // global variables
 let index = 0;
 let questions_length = 0;
@@ -71,7 +85,7 @@ get_question().then((data) => {
 
 // function for get specific question from json file
 async function get_question(id = '') {
-    return await fetch(`http://localhost:3000/questions/${id}`).then((response) => {
+    return await fetch(`http://localhost/Quiziz-AWS-Training/php/api.php?id=${id}`).then((response) => {
         return response.json();
     });
 }
