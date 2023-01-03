@@ -71,7 +71,7 @@ get_question().then((data) => {
 
 // function for get specific question from json file
 async function get_question(id = '') {
-    return await fetch(`http://localhost:3000/questions/${id}`).then((response) => {
+    return await fetch(`https://api.npoint.io/797ac5a7389482c78773/questions/${id}`).then((response) => {
         return response.json();
     });
 }
